@@ -46,8 +46,5 @@ jobs:
     - name: Upload new proxy bundle
       if: contains(github.event.head_commit.message, 'new_proxy_bundle')
       run: |
-         openapi2apigee -V
-         echo; pwd;ls -ltr
-         echo ${Account}
-         
+         ./deploy_curl.sh
       shell: bash
