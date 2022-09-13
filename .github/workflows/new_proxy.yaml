@@ -46,5 +46,6 @@ jobs:
     - name: Upload new proxy bundle
       if: contains(github.event.head_commit.message, 'new_proxy_bundle')
       run: |
+         chmod +x deploy_curl.sh
          ./deploy_curl.sh
       shell: bash

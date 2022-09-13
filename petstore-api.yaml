@@ -37,12 +37,6 @@ tags:
       url: http://swagger.io
   - name: user
     description: Operations about user
-x-a127-services:
-  oauth2:
-    provider: volos-oauth-apigee
-    options:
-      validGrantTypes:
-        - client_credentials
 paths:
   /pet:
     put:
@@ -81,7 +75,9 @@ paths:
         '405':
           description: Validation exception
       security:
-        - oauth2: []
+        - petstore_auth:
+            - write:pets
+            - read:pets
     post:
       tags:
         - pet
