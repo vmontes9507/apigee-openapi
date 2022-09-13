@@ -7,12 +7,21 @@ on:
 jobs:
   run_proxy_bundle:
     runs-on: ubuntu-20.04
+    permissions:
+      contents: 'read'
+      id-token: 'write'
     env:
       APIGEE_ORG: b2b-apigee-sb
       APIGEE_ENV: eval
-      GCLOUD_TOKEN: ${{ secrets.GCLOUD_TOKEN }}
     steps:
     - uses: actions/checkout@v2
+    - id: auth
+      uses: google-github-actions/auth@v0.4.0
+      with:
+        token_format: "access_token"
+        create_credentials_file: true
+        workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_POOL_ID }}
+        service_account: ${{ secrets.SERVICE_ACCOUNT }}
     - name: Installing dependencies
       if: contains(github.event.head_commit.message, 'new_proxy_bundle')
       run: |
@@ -43,6 +52,8 @@ jobs:
          
     - name: Upload new proxy bundle
       if: contains(github.event.head_commit.message, 'new_proxy_bundle')
+      env:
+        GCLOUD_TOKEN: ${{steps.auth.outputs.access_token}}
       run: |
          chmod +x deploy_curl.sh
          ./deploy_curl.sh
