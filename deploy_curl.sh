@@ -7,7 +7,7 @@ APIGEE_ENV=${APIGEE_ENV}
 APIGEE_BASEURL="${APIGEE_APIURL}/v1/organizations/${APIGEE_ORG}"
 echo $APIGEE_BASEURL
 
-TOKEN=${{ secrets.GCLOUD_TOKEN }}
+TOKEN=${GCLOUD_TOKEN}
 echo $TOKEN
 
 zip apiproxy.zip apiproxy -r

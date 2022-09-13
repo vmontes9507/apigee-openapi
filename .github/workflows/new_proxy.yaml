@@ -11,6 +11,7 @@ jobs:
       Account: Account_value
       APIGEE_ORG: b2b-apigee-sb
       APIGEE_ENV: eval
+      GCLOUD_TOKEN: ${{ secrets.GCLOUD_TOKEN }}
     steps:
     - uses: actions/checkout@v2
     - name: Installing dependencies
