@@ -14,7 +14,11 @@ echo $TOKEN
 PROXY_REV=$(curl -X POST "${APIGEE_BASEURL}/apis?name=${PROXY_NAME}&action=import" \
     -H "Content-Type: multipart/form-data" \
     -H "Authorization: Bearer ${TOKEN}" \
-    -F "file=@./${PROXY_NAME}/apiproxy.zip" | jq ".revision | tonumber")
+    -F "file=@./${PROXY_NAME}/apiproxy.zip")
+
+echo "Respuesta revision proxy: ${PROXY_REV}"
+
+PROXY_REV= echo ${PROXY_REV} | jq ".revision | tonumber"
 
 if [[ $PROXY_REV = "" ]]
 then
