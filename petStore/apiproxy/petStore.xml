@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<APIProxy revison="1" name="petStore">
+  <CreatedAt>1663095442</CreatedAt>
+  <Description>Swagger Petstore - OpenAPI 3.0</Description>
+  <ProxyEndpoints>
+    <ProxyEndpoint>default</ProxyEndpoint>
+  </ProxyEndpoints>
+  <TargetEndpoints>
+    <TargetEndpoint>default</TargetEndpoint>
+  </TargetEndpoints>
+</APIProxy>
