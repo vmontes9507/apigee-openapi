@@ -50,7 +50,7 @@ jobs:
       run: |
          openapi2apigee generateApi $PROXY_NAME -s $OPENAPI_SPEC_FILEPATH -d ./
          mv $PROXY_NAME/apiproxy.zip ./
-         rmdir -r $PROXY_NAME
+         rm -r $PROXY_NAME
          echo; pwd;ls -ltr
          
     - name: Upload new proxy bundle
