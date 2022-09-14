@@ -1,7 +1,7 @@
 #!/bin/bash
 
 APIGEE_APIURL=https://apigee.googleapis.com
-PROXY_NAME=petStore
+PROXY_NAME=${PROXY_NAME}
 APIGEE_ORG=${APIGEE_ORG}
 APIGEE_ENV=${APIGEE_ENV}
 APIGEE_BASEURL="${APIGEE_APIURL}/v1/organizations/${APIGEE_ORG}"

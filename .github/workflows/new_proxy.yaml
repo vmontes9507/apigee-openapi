@@ -6,6 +6,7 @@ on:
 
 jobs:
   run_proxy_bundle:
+    if: contains(github.event.head_commit.message, 'new_proxy_bundle')
     runs-on: ubuntu-20.04
     permissions:
       contents: 'read'
@@ -13,6 +14,8 @@ jobs:
     env:
       APIGEE_ORG: b2b-apigee-sb
       APIGEE_ENV: eval
+      PROXY_NAME: transversal-petstore-v1
+      OPENAPI_SPEC_FILEPATH: ./petStore.yaml
     steps:
     - uses: actions/checkout@v3
       with:
@@ -34,9 +37,6 @@ jobs:
          npm \
          python3
          npm i -g openapi2apigee
-         curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-400.0.0-linux-x86_64.tar.gz
-         tar -xf google-cloud-cli-400.0.0-linux-x86_64.tar.gz
-         ./google-cloud-sdk/install.sh --quiet
 
     - name: Checking Versions
       if: contains(github.event.head_commit.message, 'new_proxy_bundle')
@@ -44,13 +44,12 @@ jobs:
          echo "npm version: ";npm -version
          echo "openapi2apigee version: "; openapi2apigee -V
          echo "curl version: ";curl -V
-         echo "gcloud version: ";./google-cloud-sdk/bin/gcloud --version
 
     - name: Creating new proxy bundle
       if: contains(github.event.head_commit.message, 'new_proxy_bundle')
       run: |
-         openapi2apigee generateApi petStore -s ./petStore.yaml -d ./
-         echo; pwd;ls -ltr petStore/apiproxy
+         openapi2apigee generateApi $PROXY_NAME -s $OPENAPI_SPEC_FILEPATH -d ./
+         echo; pwd;ls -ltr $PROXY_NAME/apiproxy
          
     - name: Upload new proxy bundle
       if: contains(github.event.head_commit.message, 'new_proxy_bundle')
@@ -64,7 +63,6 @@ jobs:
       uses: EndBug/add-and-commit@v9
       if: contains(github.event.head_commit.message, 'new_proxy_bundle')
       with:
-        add: ./petStore
         default_author: github_actions
         message: 'Se agrega la carpeta del API Proxy generado'
         push: origin --set-upstream --force
