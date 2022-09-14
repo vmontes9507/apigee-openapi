@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<ProxyEndpoint name="default">
+  <Description>Swagger Petstore - OpenAPI 3.0</Description>
+  <PreFlow name="PreFlow">
+    <Request/>
+    <Response/>
+  </PreFlow>
+  <Flows>
+    <Flow name="updatePet">
+      <Condition>(proxy.pathsuffix MatchesPath &quot;/pet&quot;) and (request.verb = &quot;PUT&quot;)</Condition>
+      <Description>Update an existing pet</Description>
+      <Request/>
+      <Response/>
+    </Flow>
+    <Flow name="addPet">
+      <Condition>(proxy.pathsuffix MatchesPath &quot;/pet&quot;) and (request.verb = &quot;POST&quot;)</Condition>
+      <Description>Add a new pet to the store</Description>
+      <Request/>
+      <Response/>
+    </Flow>
+    <Flow name="findPetsByStatus">
+      <Condition>(proxy.pathsuffix MatchesPath &quot;/pet/findByStatus&quot;) and (request.verb = &quot;GET&quot;)</Condition>
+      <Description>Finds Pets by status</Description>
+      <Request/>
+      <Response/>
+    </Flow>
+    <Flow name="findPetsByTags">
+      <Condition>(proxy.pathsuffix MatchesPath &quot;/pet/findByTags&quot;) and (request.verb = &quot;GET&quot;)</Condition>
+      <Description>Finds Pets by tags</Description>
+      <Request/>
+      <Response/>
+    </Flow>
+    <Flow name="getPetById">
+      <Condition>(proxy.pathsuffix MatchesPath &quot;/pet/{petId}&quot;) and (request.verb = &quot;GET&quot;)</Condition>
+      <Description>Find pet by ID</Description>
+      <Request/>
+      <Response/>
+    </Flow>
+    <Flow name="updatePetWithForm">
+      <Condition>(proxy.pathsuffix MatchesPath &quot;/pet/{petId}&quot;) and (request.verb = &quot;POST&quot;)</Condition>
+      <Description>Updates a pet in the store with form data</Description>
+      <Request/>
+      <Response/>
+    </Flow>
+    <Flow name="deletePet">
+      <Condition>(proxy.pathsuffix MatchesPath &quot;/pet/{petId}&quot;) and (request.verb = &quot;DELETE&quot;)</Condition>
+      <Description>Deletes a pet</Description>
+      <Request/>
+      <Response/>
+    </Flow>
+    <Flow name="uploadFile">
+      <Condition>(proxy.pathsuffix MatchesPath &quot;/pet/{petId}/uploadImage&quot;) and (request.verb = &quot;POST&quot;)</Condition>
+      <Description>uploads an image</Description>
+      <Request/>
+      <Response/>
+    </Flow>
+    <Flow name="getInventory">
+      <Condition>(proxy.pathsuffix MatchesPath &quot;/store/inventory&quot;) and (request.verb = &quot;GET&quot;)</Condition>
+      <Description>Returns pet inventories by status</Description>
+      <Request/>
+      <Response/>
+    </Flow>
+    <Flow name="placeOrder">
+      <Condition>(proxy.pathsuffix MatchesPath &quot;/store/order&quot;) and (request.verb = &quot;POST&quot;)</Condition>
+      <Description>Place an order for a pet</Description>
+      <Request/>
+      <Response/>
+    </Flow>
+    <Flow name="getOrderById">
+      <Condition>(proxy.pathsuffix MatchesPath &quot;/store/order/{orderId}&quot;) and (request.verb = &quot;GET&quot;)</Condition>
+      <Description>Find purchase order by ID</Description>
+      <Request/>
+      <Response/>
+    </Flow>
+    <Flow name="deleteOrder">
+      <Condition>(proxy.pathsuffix MatchesPath &quot;/store/order/{orderId}&quot;) and (request.verb = &quot;DELETE&quot;)</Condition>
+      <Description>Delete purchase order by ID</Description>
+      <Request/>
+      <Response/>
+    </Flow>
+    <Flow name="createUser">
+      <Condition>(proxy.pathsuffix MatchesPath &quot;/user&quot;) and (request.verb = &quot;POST&quot;)</Condition>
+      <Description>Create user</Description>
+      <Request/>
+      <Response/>
+    </Flow>
+    <Flow name="createUsersWithListInput">
+      <Condition>(proxy.pathsuffix MatchesPath &quot;/user/createWithList&quot;) and (request.verb = &quot;POST&quot;)</Condition>
+      <Description>Creates list of users with given input array</Description>
+      <Request/>
+      <Response/>
+    </Flow>
+    <Flow name="loginUser">
+      <Condition>(proxy.pathsuffix MatchesPath &quot;/user/login&quot;) and (request.verb = &quot;GET&quot;)</Condition>
+      <Description>Logs user into the system</Description>
+      <Request/>
+      <Response/>
+    </Flow>
+    <Flow name="logoutUser">
+      <Condition>(proxy.pathsuffix MatchesPath &quot;/user/logout&quot;) and (request.verb = &quot;GET&quot;)</Condition>
+      <Description>Logs out current logged in user session</Description>
+      <Request/>
+      <Response/>
+    </Flow>
+    <Flow name="getUserByName">
+      <Condition>(proxy.pathsuffix MatchesPath &quot;/user/{username}&quot;) and (request.verb = &quot;GET&quot;)</Condition>
+      <Description>Get user by user name</Description>
+      <Request/>
+      <Response/>
+    </Flow>
+    <Flow name="updateUser">
+      <Condition>(proxy.pathsuffix MatchesPath &quot;/user/{username}&quot;) and (request.verb = &quot;PUT&quot;)</Condition>
+      <Description>Update user</Description>
+      <Request/>
+      <Response/>
+    </Flow>
+    <Flow name="deleteUser">
+      <Condition>(proxy.pathsuffix MatchesPath &quot;/user/{username}&quot;) and (request.verb = &quot;DELETE&quot;)</Condition>
+      <Description>Delete user</Description>
+      <Request/>
+      <Response/>
+    </Flow>
+  </Flows>
+  <PostFlow name="PostFlow">
+    <Request/>
+    <Response/>
+  </PostFlow>
+  <HTTPProxyConnection>
+    <BasePath>/transversal-petstore-v1</BasePath>
+    <VirtualHost>default</VirtualHost>
+    <VirtualHost>secure</VirtualHost>
+  </HTTPProxyConnection>
+  <RouteRule name="default">
+    <TargetEndpoint>default</TargetEndpoint>
+  </RouteRule>
+</ProxyEndpoint>
