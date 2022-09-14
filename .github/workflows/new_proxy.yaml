@@ -49,7 +49,9 @@ jobs:
       if: contains(github.event.head_commit.message, 'new_proxy_bundle')
       run: |
          openapi2apigee generateApi $PROXY_NAME -s $OPENAPI_SPEC_FILEPATH -d ./
-         echo; pwd;ls -ltr $PROXY_NAME/apiproxy
+         mv $PROXY_NAME/apiproxy.zip ./
+         rmdir -r $PROXY_NAME
+         echo; pwd;ls -ltr
          
     - name: Upload new proxy bundle
       if: contains(github.event.head_commit.message, 'new_proxy_bundle')
@@ -64,5 +66,5 @@ jobs:
       if: contains(github.event.head_commit.message, 'new_proxy_bundle')
       with:
         default_author: github_actions
-        message: 'Se agrega la carpeta del API Proxy generado'
+        message: 'Se agrega la carpeta zip del API Proxy generado'
         push: origin --set-upstream --force
