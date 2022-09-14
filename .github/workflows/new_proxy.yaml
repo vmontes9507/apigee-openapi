@@ -64,5 +64,5 @@ jobs:
       with:
         add: ./petStore
         default_author: github_actions
-        message: 'Se agrega la carpeta del API Proxy generado con variable en el nombre'
+        message: 'Se agrega la carpeta del API Proxy generado'
         push: origin --set-upstream --force
